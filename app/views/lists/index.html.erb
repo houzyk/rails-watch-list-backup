@@ -1,13 +1,9 @@
 <div class="container">
-  <div class="row">
-    <ul class="list-group d-flex">
+  <div class="cards m-2">
       <% @lists.each do |list|%>
-        <div data-aos="fade-in">
-          <li class="p-4 m-2 list-group-item">
+          <div class="card-category" data-aos="fade-in">
             <%= link_to "#{list.name}", list_path(list) %>
-          </li>
-        </div>
+          </div>
       <% end %>
-    </ul>
   </div>
 </div>
