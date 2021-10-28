@@ -21,7 +21,7 @@ movie['results'].each do |film_each|
   film = Movie.new(
     title: film_each['title'],
     overview: film_each['overview'],
-    poster_url: "https://image.tmdb.org/t/p/w500/#{film_each['poster_path']}",
+    poster_url: "https://image.tmdb.org/t/p/w500#{film_each['poster_path']}",
     rating: film_each['vote_average'].to_f
   )
   film.save
