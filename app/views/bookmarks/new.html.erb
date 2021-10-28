@@ -1,8 +1,9 @@
 <div class="container">
-  <h3>Add A New Bookmark</h3>
+  <h3>Add A New Movie</h3>
     <%= simple_form_for([@list, @bookmark]) do |f| %>
       <%= f.input :comment %>
       <%= f.association :movie  %>
       <%= f.button :submit %>
+      <%= link_to "Back", list_path(@list) %>
     <% end %>
 </div>
