@@ -2,9 +2,11 @@
   <div class="row">
     <ul class="list-group d-flex">
       <% @lists.each do |list|%>
-        <li class="p-4 m-2 list-group-item">
-          <%= link_to "#{list.name}", list_path(list) %>
-        </li>
+        <div data-aos="fade-in">
+          <li class="p-4 m-2 list-group-item">
+            <%= link_to "#{list.name}", list_path(list) %>
+          </li>
+        </div>
       <% end %>
     </ul>
   </div>
