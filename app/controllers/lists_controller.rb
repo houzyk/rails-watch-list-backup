@@ -1,4 +1,12 @@
 class ListsController < ApplicationController
+  def home
+  end
+
+  def search
+    @list = List.find(params[:id])
+    @movies = @list.movies.where(title: params[:query])
+  end
+
   def index
     @lists = List.all
   end

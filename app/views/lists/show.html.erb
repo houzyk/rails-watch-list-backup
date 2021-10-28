@@ -1,5 +1,14 @@
 <h1>List</h1>
 
+<%= form_tag search_list_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control w-25",
+    placeholder: "Find a movie"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
 <%= @list.name%>
 <% @list.reviews.each do |review|%>
   <p><%= review.rating%> - <%= review.content%></p>
