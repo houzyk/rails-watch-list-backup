@@ -16,7 +16,7 @@
 <h3>Add A New Movie</h3>
     <%= simple_form_for([@list, @bookmark]) do |f| %>
       <%= f.input :comment %>
-      <%= f.association :movie  %>
+      <%= f.association :movie, input_html: { class: 'select2' }%>
       <%= f.button :submit %>
       <%= link_to "Back", lists_path %>
     <% end %>
