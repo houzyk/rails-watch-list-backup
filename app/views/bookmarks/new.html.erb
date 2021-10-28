@@ -1,4 +1,6 @@
-<div class="container">
+<%
+=begin%>
+ <div class="container">
   <h3>Add A New Movie</h3>
     <%= simple_form_for([@list, @bookmark]) do |f| %>
       <%= f.input :comment %>
@@ -7,3 +9,5 @@
       <%= link_to "Back", list_path(@list) %>
     <% end %>
 </div>
+<%
+=end%>
