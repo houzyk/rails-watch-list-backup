@@ -14,9 +14,8 @@
   </head>
 
   <body>
-  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "https://thumbs.dreamstime.com/z/vecktor-illustration-delicious-popcorn-logo-design-box-container-vecktor-illustration-delicious-popcorn-logo-design-201214910.jpg" %>
     Houzair's Watch List
   <% end %>
 
@@ -36,10 +35,8 @@
     </ul>
   </div>
   </div>
-
-    <%= yield %>
-  </body>
-  <div class="footer">
+      <%= yield %>
+     <div class="footer">
   <div class="footer-links">
     <a href="#"><i class="fab fa-github"></i></a>
     <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -48,5 +45,5 @@
     Made with <i class="fas fa-heart"></i> at Le Wagon Mauritius
   </div>
 </div>
-
+  </body>
 </html>

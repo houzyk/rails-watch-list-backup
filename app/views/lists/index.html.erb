@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="cards m-2">
+  <div class="cards">
       <% @lists.each do |list|%>
           <div class="card-category" data-aos="fade-in">
             <%= link_to "#{list.name}", list_path(list) %>
