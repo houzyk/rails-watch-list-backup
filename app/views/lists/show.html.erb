@@ -1,41 +1,74 @@
-<%= form_tag search_list_path, method: :get do %>
-  <div class="search-form-control form-group">
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control string required",
-    id:"search_query",
-    placeholder: "Find a movie in the list '#{@list.name}'"
-  %>
-  <%= submit_tag "Search", class: "btn btn-flat" %>
+<div class="container">
+  <div class="card-category" data-aos="fade-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+    <h1 class="ghost-title"> <%= @list.name%> </h1>
   </div>
-
-<% end %>
-
-<%= @list.name%>
-<% @list.reviews.each do |review|%>
-  <p><%= review.rating%> - <%= review.content%></p>
-<%end%>
-<% @list.bookmarks.each do |bookmark|%>
-  <p><%= bookmark.comment%></p>
-  <p><%= bookmark.movie.title%></p>
-  <%= link_to "Delete #{bookmark.comment}",
-            bookmark_path(bookmark),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
-<% end %>
-
-<%= link_to "Back", lists_path %>
-
-<h3>Add A New Review</h3>
-    <%= simple_form_for([@list, @review]) do |f| %>
-      <%= f.input :content %>
-      <%= f.input :rating %>
-      <%= f.button :submit%>
-    <% end %>
-
-<h3>Add A New Movie</h3>
     <%= simple_form_for([@list, @bookmark]) do |f| %>
       <%= f.input :comment %>
       <%= f.association :movie, input_html: { class: 'select2' }%>
-      <%= f.button :submit %>
+      <%= f.button :submit, class:"btn btn-ghost" %>
     <% end %>
+</div>
+
+<div class="container">
+  <div class="cards">
+  <% @list.bookmarks.each do |bookmark|%>
+      <div class="card-trip">
+        <img src=<%= bookmark.movie.poster_url%> />
+            <div class="card-trip-infos">
+              <div>
+              <h2><%= bookmark.movie.title%></h2>
+              <p class="my-3"><%= bookmark.movie.overview%></p>
+              <h6>"<%= bookmark.comment%>"</h6>
+              <%= link_to "",
+                  bookmark_path(bookmark),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" },
+                  class:"fas fa-trash card-delete"
+                %>
+            </div>
+            <h2 class="card-trip-pricing"><%= bookmark.movie.rating%></h2>
+          </div>
+      </div>
+    <% end %>
+
+
+    <div>
+    <%= simple_form_for([@list, @review]) do |f| %>
+      <%= f.input :content, label: false, placeholder: "Add A Review to the '#{@list.name}'' list..." %>
+      <%= f.input :rating, label: false, collection: (0..5).to_a%>
+      <%= f.button :submit, class:"btn btn-ghost btn-block mb-3"%>
+    <% end %>
+    <% @list.reviews.first(4).each do |review|%>
+        <div class="notification">
+          <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+          <div class="notification-content">
+            <p><small><%= review.rating%></small></p>
+            <p><%= review.content%></p>
+          </div>
+        </div>
+      <%end%>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer fixed-bottom">
+  <div class="footer-links">
+    <a href="https://github.com/houzyk" target="_blank"><i class="fab fa-github"></i></a>
+  </div>
+  <div class="footer-copyright">
+    <div>
+      <%= form_tag search_list_path, method: :get do %>
+      <div class="search-form-control">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "",
+          id:"search_query",
+          placeholder: "Find a movie in the list '#{@list.name}'"
+        %>
+        <%= submit_tag "Search", class: "btn btn-ghost mt-2" %>
+      </div>
+      <% end %>
+  </div>
+  </div>
+</div>

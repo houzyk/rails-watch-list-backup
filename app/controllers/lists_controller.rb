@@ -1,9 +1,10 @@
 class ListsController < ApplicationController
+  before_action :set_list, only: %i[search show]
+
   def home
   end
 
   def search
-    @list = List.find(params[:id])
     @movies = @list.movies.where(title: params[:query])
   end
 
@@ -12,7 +13,6 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
     @bookmark = Bookmark.new
     @review = Review.new
   end
@@ -25,7 +25,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     if @list.save
       @list.save
-      redirect_to list_path(@list)
+      redirect_to lists_path
     else
       render :new
     end
@@ -35,5 +35,9 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:name)
+  end
+
+  def set_list
+    @list = List.find(params[:id])
   end
 end
