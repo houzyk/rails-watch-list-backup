@@ -1,3 +1,17 @@
-<% @movies.each do |movie|%>
-  <%= movie.title%>
-<%end%>
+<div class="container">
+  <div class="text-center">
+    <p>You searched For <b><%= @query%></b>. Here are the movie(s) relating to your search.</p>
+  </div>
+  <div class="cards">
+  <% @movies.each do |movie|%>
+      <div class="card-trip">
+        <img src=<%= movie.poster_url%> />
+            <div class="card-trip-infos">
+              <div>
+              <h2><%= movie.title%></h2>
+              <p class="my-3"><%= movie.overview%></p>
+            </div>
+            <h2 class="card-trip-pricing"><%= movie.rating%></h2>
+          </div>
+      </div>
+    <% end %>

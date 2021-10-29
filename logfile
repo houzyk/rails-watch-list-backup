@@ -1,0 +1,2 @@
+2021-10-29 16:31:27.271 +04 [59358] FATAL:  database files are incompatible with server
+2021-10-29 16:31:27.271 +04 [59358] DETAIL:  The data directory was initialized by PostgreSQL version 13, which is not compatible with this version 14.0.

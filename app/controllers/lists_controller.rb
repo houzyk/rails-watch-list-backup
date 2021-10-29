@@ -5,7 +5,12 @@ class ListsController < ApplicationController
   end
 
   def search
-    @movies = @list.movies.where(title: params[:query])
+    if params[:query] == ""
+      redirect_to list_path(params[:id])
+    else
+      @movies = @list.movies.where(title: params[:query])
+      @query = params[:query]
+    end
   end
 
   def index

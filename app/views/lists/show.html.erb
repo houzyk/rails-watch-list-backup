@@ -1,12 +1,18 @@
 <div class="container">
-  <div class="card-category" data-aos="fade-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-    <h1 class="ghost-title"> <%= @list.name%> </h1>
+  <div class="row show-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+      <h1 class="ghost-title"> <%= @list.name%> </h1>
+    </div>
+    <div class="col-12 col-md-6 p-4 d-flex justify-content-center align-items-center show-banner-side">
+    <div class="form-group">
+      <%= simple_form_for([@list, @bookmark]) do |f| %>
+        <%= f.input :comment, class:"form-control w-10", label: false, placeholder: "Add A Bookmark CommenT"%>
+        <%= f.association :movie, input_html: { class: 'select2' }, class:"form-control",  label: false, placeholder: "Choose A Movie"%>
+        <%= f.button :submit, class:"btn btn-primary" %>
+      <% end %>
+    </div>
+    </div>
   </div>
-    <%= simple_form_for([@list, @bookmark]) do |f| %>
-      <%= f.input :comment %>
-      <%= f.association :movie, input_html: { class: 'select2' }%>
-      <%= f.button :submit, class:"btn btn-ghost" %>
-    <% end %>
 </div>
 
 <div class="container">
@@ -52,21 +58,21 @@
   </div>
 </div>
 
-<div class="footer fixed-bottom">
+<div class="footer">
   <div class="footer-links">
     <a href="https://github.com/houzyk" target="_blank"><i class="fab fa-github"></i></a>
   </div>
   <div class="footer-copyright">
     <div>
       <%= form_tag search_list_path, method: :get do %>
-      <div class="search-form-control">
+      <div class="search-form-control form-inline">
         <%= text_field_tag :query,
           params[:query],
-          class: "",
+          class: "form-control",
           id:"search_query",
-          placeholder: "Find a movie in the list '#{@list.name}'"
+          placeholder: "Find a movie in '#{@list.name}'"
         %>
-        <%= submit_tag "Search", class: "btn btn-ghost mt-2" %>
+        <%= submit_tag "Search", class: "btn btn-info" %>
       </div>
       <% end %>
   </div>
